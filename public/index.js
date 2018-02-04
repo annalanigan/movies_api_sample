@@ -11,12 +11,13 @@ var requestComplete = function(){
   }
   var jsonString = this.responseText;
   var movies = JSON.parse(jsonString);
-  // console.log("what are my moveis?", movies.Search);
+  console.log("what are my moveis?", movies.Search);
   populatePage(movies);
 }
 
 var populatePage = function(movies){
   var location = document.querySelector('#movies-list');
+  location.innerText = '';
   var results = document.querySelector('#total-results');
   results.innerText = 'Total Results: ' + movies.totalResults;
   console.log(movies.totalResults);
@@ -43,17 +44,33 @@ var populatePage = function(movies){
   })
 }
 
-searchQuery = function(){
-  // find word when the button is pushed on the page
+// searchQuery = function(){
+//   // find word when the button is pushed on the page
+// }
+
+buttonClick = function(){
+  var key = new ApiKey();
+  var input = document.querySelector('input');
+  console.log('what is the input value?', input.value);
+  var searchQuery = input.value;
+  console.log("what is searchQuery", searchQuery);
+  var url = 'http://www.omdbapi.com/?s=' + searchQuery + '&page=1&type=movie&apikey=' + key.getKey();
+  makeRequest(url, requestComplete);
 }
+
+
 
 var app = function(){
   var key = new ApiKey();
+  // var searchQuery = "star"
   // var search = searchQuery();
-  var search = 'star';
-  var url = 'http://www.omdbapi.com/?s=' + search + '&page=1&type=movie&apikey=' + key.getKey();
-  console.log(url);
-  makeRequest(url, requestComplete);
+  var button = document.querySelector('button');
+  button.addEventListener('click', buttonClick);
+  // console.log(searchQuery);
+  // // var search = 'rogue+one';
+  // var url = 'http://www.omdbapi.com/?s=aardvark&page=1&type=movie&apikey=' + key.getKey();
+  // // console.log(url);
+  // makeRequest(url, requestComplete);
 }
 
 window.addEventListener('load', app);
