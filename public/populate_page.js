@@ -2,20 +2,20 @@ const Populate = function(list){
   this.list = list;
 }
 
-Populate.prototype.layoutPageNumbers = function () {
+Populate.prototype.layoutPageNumbers = function(pageNo){
   var results = document.querySelector('#total-results');
   results.innerText = 'Total Results: ' + this.list.totalResults;
   var numberOfPages = Math.ceil(this.list.totalResults / 10);
   var pages = document.querySelector('#page-number');
-  pages.innerText = 'page ' + page + ' of ' + numberOfPages;
+  pages.innerText = 'page ' + pageNo + ' of ' + numberOfPages;
 };
 
-Populate.prototype.addToPage = function () {
+Populate.prototype.addToPage = function(page){
 
   var location = document.querySelector('#movies-list');
   location.innerText = '';
 
-  this.layoutPageNumbers();
+  this.layoutPageNumbers(page);
 
   this.list.Search.forEach(function(movie){
     // set up list

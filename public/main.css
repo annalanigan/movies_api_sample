@@ -12,11 +12,16 @@ html {
   height: 450px;
   margin: 20px;
   border: solid;
-  background-size: cover;
+  border-radius: 5px;
+  background-image: url('https://pbs.twimg.com/profile_images/1799491805/canstock3079386.jpg');
+  background-size: contain;
 }
 
 #title {
-  height: 36px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
 }
 
 #move-pages button{

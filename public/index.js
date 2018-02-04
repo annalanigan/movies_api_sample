@@ -5,27 +5,11 @@ var makeRequest = function(url, callback){
   request.send();
 }
 
-var requestComplete = function(){
-  if(this.status !== 200) {
-    return;
-  }
-  var jsonString = this.responseText;
-  var movies = JSON.parse(jsonString);
-  if (movies.Search == undefined){
-    var location = document.querySelector('#movies-list');
-    location.innerText = '';
-    var results = document.querySelector('#total-results');
-    results.innerText = 'No results for this search';
-  } else {
-    var populatePage = new Populate(movies)
-    populatePage.addToPage();
-  }
-}
-
+// need to refacot the global variable..
 var page = 1;
 
 buttonClick = function(){
-  var page = 1;
+  page = 1;
   updatePage(page);
 }
 
@@ -43,6 +27,23 @@ pageDown = function(){
   }
 }
 
+var requestComplete = function(){
+  if(this.status !== 200) {
+    return;
+  }
+  var jsonString = this.responseText;
+  var movies = JSON.parse(jsonString);
+  if (movies.Search == undefined){
+    var location = document.querySelector('#movies-list');
+    location.innerText = '';
+    var results = document.querySelector('#total-results');
+    results.innerText = 'No results for this search';
+  } else {
+    var populatePage = new Populate(movies)
+    populatePage.addToPage(page);
+  }
+}
+
 updatePage = function(pageNo){
   var key = new ApiKey();
   var input = document.querySelector('input');
@@ -52,6 +53,7 @@ updatePage = function(pageNo){
 }
 
 var app = function(){
+
   var button = document.querySelector('button');
   button.addEventListener('click', buttonClick);
 
