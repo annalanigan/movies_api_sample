@@ -12,7 +12,14 @@ var requestComplete = function(){
   var jsonString = this.responseText;
   var movies = JSON.parse(jsonString);
   console.log("what are my moveis?", movies.Search);
-  populatePage(movies);
+  if (movies.Search == undefined){
+    var location = document.querySelector('#movies-list');
+    location.innerText = '';
+    var results = document.querySelector('#total-results');
+    results.innerText = 'No results for this search';
+  } else {
+    populatePage(movies);
+  }
 }
 
 var populatePage = function(movies){
