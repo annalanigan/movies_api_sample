@@ -1,15 +1,20 @@
 html {
   font-style: normal;
   font-family: sans-serif;
+  text-align: center;
 }
 
 #movies-list li{
   list-style: none;
-  /* display: inline-block; */
+  display: inline-block;
   text-align: center;
   width: 220px;
   height: 450px;
   margin: 20px;
   border: solid;
   background-size: cover;
+}
+
+#title {
+  height: 36px;
 }

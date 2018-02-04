@@ -30,6 +30,7 @@ var populatePage = function(movies){
   movies.Search.forEach(function(movie){
     var li = document.createElement('li');
     var title = document.createElement('p');
+    title.id = 'title'
     title.innerText = movie.Title;
     var year = document.createElement('p');
     year.innerText = movie.Year;
