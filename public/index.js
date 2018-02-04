@@ -19,9 +19,19 @@ var populatePage = function(movies){
   var location = document.querySelector('#movies-list');
 
   movies.forEach(function(movie){
+    console.log("what is my movie?", movie);
     var li = document.createElement('li');
-    li.innerText = movie.Title;
+    var title = document.createElement('p');
+    title.innerText = movie.Title;
+    var year = document.createElement('p');
+    year.innerText = movie.Year;
+    var img = document.createElement('img');
+    img.src = movie.Poster;
+    img.width = 200;
     // console.log(movie.Title);
+    li.appendChild(title);
+    li.appendChild(year);
+    li.appendChild(img);
     location.appendChild(li);
   })
 }
