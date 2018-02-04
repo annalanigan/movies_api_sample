@@ -49,17 +49,25 @@ var populatePage = function(movies){
   })
 }
 
+var page = 1;
+
 buttonClick = function(){
   var key = new ApiKey();
   var input = document.querySelector('input');
   var searchQuery = input.value;
-  var url = 'http://www.omdbapi.com/?s=' + searchQuery + '&page=1&type=movie&apikey=' + key.getKey();
+  var url = 'http://www.omdbapi.com/?s=' + searchQuery + '&page=' + page + '&type=movie&apikey=' + key.getKey();
   makeRequest(url, requestComplete);
 }
 
 var app = function(){
   var button = document.querySelector('button');
   button.addEventListener('click', buttonClick);
+
+  var forwardButton = document.querySelector('#forward');
+  forwardButton.addEventListener('click', function(){
+    page ++;
+    buttonClick();
+  })
 }
 
 window.addEventListener('load', app);
