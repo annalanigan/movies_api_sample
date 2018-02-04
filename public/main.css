@@ -18,3 +18,15 @@ html {
 #title {
   height: 36px;
 }
+
+#move-pages button{
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+}
+
+#move-pages p{
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+}

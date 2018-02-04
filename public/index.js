@@ -21,11 +21,18 @@ var requestComplete = function(){
   }
 }
 
+var rounding = function(number){
+  return Math.ceil(number);
+}
+
 var populatePage = function(movies){
   var location = document.querySelector('#movies-list');
   location.innerText = '';
   var results = document.querySelector('#total-results');
   results.innerText = 'Total Results: ' + movies.totalResults;
+  var numberOfPages = rounding(movies.totalResults / 10);
+  var pages = document.querySelector('#page-number');
+  pages.innerText = 'page ' + page + ' of ' + numberOfPages;
 
   movies.Search.forEach(function(movie){
     var li = document.createElement('li');
@@ -52,10 +59,29 @@ var populatePage = function(movies){
 var page = 1;
 
 buttonClick = function(){
+  page = 1;
+  updatePage(page);
+}
+
+pageUp = function(){
+  // if (page > 10){
+    page ++;
+    updatePage(page);
+  // }
+}
+
+pageDown = function(){
+  if (page > 1){
+    page --;
+    updatePage(page);
+  }
+}
+
+updatePage = function(pageNo){
   var key = new ApiKey();
   var input = document.querySelector('input');
   var searchQuery = input.value;
-  var url = 'http://www.omdbapi.com/?s=' + searchQuery + '&page=' + page + '&type=movie&apikey=' + key.getKey();
+  var url = 'http://www.omdbapi.com/?s=' + searchQuery + '&page=' + pageNo + '&type=movie&apikey=' + key.getKey();
   makeRequest(url, requestComplete);
 }
 
@@ -64,10 +90,11 @@ var app = function(){
   button.addEventListener('click', buttonClick);
 
   var forwardButton = document.querySelector('#forward');
-  forwardButton.addEventListener('click', function(){
-    page ++;
-    buttonClick();
-  })
+  forwardButton.addEventListener('click', pageUp)
+
+  var backButton = document.querySelector('#back');
+  backButton.addEventListener('click', pageDown)
+
 }
 
 window.addEventListener('load', app);
