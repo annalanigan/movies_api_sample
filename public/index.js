@@ -17,49 +17,15 @@ var requestComplete = function(){
     var results = document.querySelector('#total-results');
     results.innerText = 'No results for this search';
   } else {
-    populatePage(movies);
+    var populatePage = new Populate(movies)
+    populatePage.addToPage();
   }
-}
-
-var rounding = function(number){
-  return Math.ceil(number);
-}
-
-var populatePage = function(movies){
-  var location = document.querySelector('#movies-list');
-  location.innerText = '';
-  var results = document.querySelector('#total-results');
-  results.innerText = 'Total Results: ' + movies.totalResults;
-  var numberOfPages = rounding(movies.totalResults / 10);
-  var pages = document.querySelector('#page-number');
-  pages.innerText = 'page ' + page + ' of ' + numberOfPages;
-
-  movies.Search.forEach(function(movie){
-    var li = document.createElement('li');
-    var title = document.createElement('p');
-    title.id = 'title'
-    title.innerText = movie.Title;
-    var year = document.createElement('p');
-    year.innerText = movie.Year;
-    var img = document.createElement('img');
-    if (movie.Poster === "N/A"){
-      img.src = 'https://vignette.wikia.nocookie.net/max-steel-reboot/images/7/72/No_Image_Available.gif/revision/latest?cb=20130902173013'
-    } else {
-      img.src = movie.Poster;
-    }
-    img.height = 300;
-    img.width = 200;
-    li.appendChild(title);
-    li.appendChild(year);
-    li.appendChild(img);
-    location.appendChild(li);
-  })
 }
 
 var page = 1;
 
 buttonClick = function(){
-  page = 1;
+  var page = 1;
   updatePage(page);
 }
 
