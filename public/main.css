@@ -1,0 +1,15 @@
+html {
+  font-style: normal;
+  font-family: sans-serif;
+}
+
+#movies-list li{
+  list-style: none;
+  /* display: inline-block; */
+  text-align: center;
+  width: 220px;
+  height: 450px;
+  margin: 20px;
+  border: solid;
+  background-size: cover;
+}
