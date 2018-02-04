@@ -36,8 +36,16 @@ var populatePage = function(movies){
   })
 }
 
+searchQuery = function(){
+  // find word when the button is pushed on the page
+}
+
 var app = function(){
-  var url = 'http://www.omdbapi.com/?s=star&apikey=3e48f36d&';
+  var key = new ApiKey();
+  // var search = searchQuery();
+  var search = 'godzilla';
+  var url = 'http://www.omdbapi.com/?s=' + search + '&apikey=' + key.getKey();
+  // console.log(url);
   makeRequest(url, requestComplete);
 }
 
