@@ -16,7 +16,7 @@ Populate.prototype.addToPage = function(page){
   location.innerText = '';
 
   this.layoutPageNumbers(page);
-
+  
   this.list.Search.forEach(function(movie){
     // set up list
     var li = document.createElement('li');

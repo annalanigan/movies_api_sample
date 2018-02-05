@@ -49,6 +49,7 @@ updatePage = function(pageNo){
   var input = document.querySelector('input');
   var searchQuery = input.value;
   var url = 'http://www.omdbapi.com/?s=' + searchQuery + '&page=' + pageNo + '&type=movie&apikey=' + key.getKey();
+  console.log(url);
   makeRequest(url, requestComplete);
 }
 
