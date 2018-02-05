@@ -8,19 +8,19 @@ var makeRequest = function(url, callback){
 // need to refacot the global variable..
 var page = 1;
 
-buttonClick = function(){
+const buttonClick = function(){
   page = 1;
   updatePage(page);
 }
 
-pageUp = function(){
+const pageUp = function(){
   // if (page > 10){
     page ++;
     updatePage(page);
   // }
 }
 
-pageDown = function(){
+const pageDown = function(){
   if (page > 1){
     page --;
     updatePage(page);
@@ -44,7 +44,7 @@ var requestComplete = function(){
   }
 }
 
-updatePage = function(pageNo){
+const updatePage = function(pageNo){
   var key = new ApiKey();
   var input = document.querySelector('input');
   var searchQuery = input.value;
